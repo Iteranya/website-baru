@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Showcase of every vanilla HTML element">
+  <meta name="author" content="Senpai & Aina">
+  <title>🔰 Vanilla HTML Feature Showcase — May 14, 2026</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔰</text></svg>">
+
+  <!-- External CSS (linked stylesheet) -->
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: #0d1117; color: #c9d1d9; line-height: 1.6;
+      max-width: 900px; margin: 0 auto; padding: 20px;
+    }
+
+    /* ── Headers ── */
+    h1, h2, h3, h4, h5, h6 { color: #f0f6fc; margin-top: 1.5em; margin-bottom: 0.5em; }
+    h1 { font-size: 2.2rem; border-bottom: 2px solid #30363d; padding-bottom: 0.3em; }
+    h2 { font-size: 1.7rem; border-bottom: 1px solid #21262d; padding-bottom: 0.2em; }
+    h3 { font-size: 1.3rem; color: #58a6ff; }
+
+    /* ── Sections ── */
+    section { margin: 40px 0; padding: 20px; border: 1px solid #21262d; border-radius: 8px; background: #161b22; }
+    section h2 { margin-top: 0; }
+
+    /* ── Text ── */
+    p { margin: 0.8em 0; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:visited { color: #bc8cff; }
+
+    /* ── Lists ── */
+    ul, ol { padding-left: 2em; margin: 0.8em 0; }
+    dl { margin: 0.8em 0; }
+    dt { font-weight: bold; color: #f0f6fc; margin-top: 0.6em; }
+    dd { margin-left: 1.5em; color: #8b949e; }
+
+    /* ── Table ── */
+    table { width: 100%; border-collapse: collapse; margin: 1em 0; }
+    caption { color: #8b949e; font-style: italic; margin-bottom: 0.5em; }
+    th, td { border: 1px solid #30363d; padding: 10px 14px; text-align: left; }
+    th { background: #21262d; color: #f0f6fc; font-weight: 600; }
+    tbody tr:hover { background: #1c2128; }
+    tfoot td { font-style: italic; color: #8b949e; }
+
+    /* ── Forms ── */
+    fieldset { border: 1px solid #30363d; border-radius: 6px; padding: 16px; margin: 1em 0; }
+    legend { color: #58a6ff; font-weight: bold; padding: 0 8px; }
+    label { display: block; margin: 10px 0 4px; font-size: 0.9rem; color: #c9d1d9; }
+    input, select, textarea, button {
+      background: #0d1117; color: #c9d1d9; border: 1px solid #30363d;
+      border-radius: 6px; padding: 8px 12px; font-size: 0.95rem; font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus, button:focus {
+      outline: 2px solid #58a6ff; outline-offset: 2px;
+    }
+    input[type="radio"], input[type="checkbox"] { width: auto; margin-right: 6px; }
+    button {
+      background: #238636; color: white; border-color: #2ea043; cursor: pointer;
+      margin: 4px; padding: 8px 18px;
+    }
+    button:hover { background: #2ea043; }
+    button[type="reset"] { background: #21262d; border-color: #30363d; color: #c9d1d9; }
+    button[type="reset"]:hover { background: #30363d; }
+    progress, meter { width: 200px; height: 20px; margin: 4px 0; }
+
+    /* ── Other ── */
+    blockquote {
+      border-left: 3px solid #58a6ff; margin: 1em 0; padding: 0.5em 1em;
+      background: #1c2128; color: #8b949e; border-radius: 0 6px 6px 0;
+    }
+    pre {
+      background: #161b22; border: 1px solid #30363d; border-radius: 6px;
+      padding: 16px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+    }
+    code { background: #21262d; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; }
+    pre code { background: none; padding: 0; }
+    hr { border: none; border-top: 1px solid #30363d; margin: 1.5em 0; }
+    img, video, audio { max-width: 100%; border-radius: 6px; }
+    figure { margin: 1em 0; text-align: center; }
+    figcaption { font-size: 0.85rem; color: #8b949e; margin-top: 6px; }
+    details { margin: 0.8em 0; }
+    summary { cursor: pointer; color: #58a6ff; font-weight: 600; padding: 4px 0; }
+    summary:hover { color: #79c0ff; }
+    mark { background: #bb8009; color: #0d1117; padding: 1px 4px; border-radius: 3px; }
+    ins { text-decoration-color: #3fb950; }
+    del { color: #8b949e; }
+    abbr[title] { text-decoration: underline dotted; cursor: help; }
+    kbd { background: #21262d; border: 1px solid #30363d; border-radius: 4px; padding: 1px 6px; font-family: monospace; font-size: 0.85em; }
+    dfn { font-style: italic; color: #d2a8ff; }
+
+    /* ── Image Grid ── */
+    .img-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 1em 0; }
+    .img-grid img { width: 100%; height: 150px; object-fit: cover; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- HEADER / DOCUMENT INTRO                                       -->
+  <!-- ============================================================ -->
+  <header>
+    <h1>🔰 Vanilla HTML Feature Showcase</h1>
+    <p>
+      Every native <abbr title="HyperText Markup Language">HTML</abbr> element — no frameworks, no JavaScript (almost), just <strong>pure vanilla HTML5</strong>.
+    </p>
+    <p>
+      <small>Made with 💙 by Senpai & Aina · Thursday, <time datetime="2026-05-14">May 14, 2026</time> · <time>8:52 PM</time></small>
+    </p>
+
+    <!-- Navigation -->
+    <nav>
+      <h3>📑 Jump To:</h3>
+      <ul>
+        <li><a href="#text">Text & Inline</a></li>
+        <li><a href="#lists">Lists</a></li>
+        <li><a href="#media">Media & Images</a></li>
+        <li><a href="#table">Tables</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#semantic">Semantic Elements</a></li>
+        <li><a href="#interactive">Interactive</a></li>
+        <li><a href="#misc">Miscellaneous</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- 1. TEXT & INLINE ELEMENTS                                     -->
+  <!-- ============================================================ -->
+  <section id="text">
+    <h2>📝 Text & Inline Elements</h2>
+
+    <h3>Headings (h1–h6)</h3>
+    <h1>Heading 1 — The Big One</h1>
+    <h2>Heading 2 — Section Title</h2>
+    <h3>Heading 3 — Subsection</h3>
+    <h4>Heading 4 — Smaller Still</h4>
+    <h5>Heading 5 — Almost There</h5>
+    <h6>Heading 6 — The Littlest Heading</h6>
+
+    <h3>Paragraph & Line Break</h3>
+    <p>This is a paragraph. It demonstrates <strong>bold text</strong>, <em>emphasized text</em>, <u>underlined</u>, <s>strikethrough</s>, <mark>highlighted</mark>, <ins>inserted</ins>, <del>deleted</del>, <small>small print</small>, and <b>bold</b> vs <i>italic</i> styling tags.</p>
+    <p>Line one.<br>Line two — broken with <code><br></code>.</p>
+
+    <h3>Inline Code & Technical</h3>
+    <p>Use <code>code</code> for inline code. <var>x</var> = <var>y</var> + 1. Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save. Output: <samp>Build successful!</samp></p>
+    <p><sub>Subscript</sub> and <sup>Superscript</sup> — like H<sub>2</sub>O and x<sup>2</sup>.</p>
+
+    <h3>Semantic Inline</h3>
+    <p><abbr title="Cascading Style Sheets">CSS</abbr> — hover to see title. <dfn>HTML</dfn> is the standard markup language. The <cite>HTML Living Standard</cite> defines it. A quote: <q>Simplicity is prerequisite for reliability.</q> — <cite>Edsger Dijkstra</cite></p>
+    <p>Ruby annotation: <ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby></p>
+    <p><bdi>إيان</bdi> — bidirectional isolation. <bdo dir="rtl">This text goes right-to-left!</bdo></p>
+    <p><span>Plain span with <span style="color:#3fb950;">nested green</span> text.</span></p>
+    <p>The <data value="42">Answer</data> to everything. The event starts at <time datetime="2026-05-14T20:52">8:52 PM</time>.</p>
+    <p><wbr> — a word-break opportunity (resize window very narrow to see it work in long URLs).</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 2. LISTS                                                      -->
+  <!-- ============================================================ -->
+  <section id="lists">
+    <h2>📋 Lists</h2>
+
+    <h3>Unordered List</h3>
+    <ul>
+      <li>HTML is the skeleton</li>
+      <li>CSS is the skin</li>
+      <li>JavaScript is the muscles
+        <ul>
+          <li>Nested item — frameworks</li>
+          <li>Nested item — vanilla</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Ordered List</h3>
+    <ol>
+      <li>Learn HTML</li>
+      <li>Learn CSS</li>
+      <li>Learn JavaScript</li>
+      <li value="10">Jump to 10! (the <code>value</code> attribute)</li>
+      <li>Build everything</li>
+    </ol>
+    <ol type="A">
+      <li>Type A</li>
+      <li>Type B</li>
+    </ol>
+    <ol type="I" reversed>
+      <li>Roman, reversed</li>
+      <li>Counts down</li>
+    </ol>
+
+    <h3>Description List</h3>
+    <dl>
+      <dt><code>html</code></dt>
+      <dd>The root element of an HTML document.</dd>
+      <dt><code>head</code></dt>
+      <dd>Contains metadata, title, styles, and scripts.</dd>
+      <dt><code>body</code></dt>
+      <dd>Everything visible on the page.</dd>
+    </dl>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 3. MEDIA & IMAGES                                             -->
+  <!-- ============================================================ -->
+  <section id="media">
+    <h2>🖼️ Media & Images</h2>
+
+    <h3>Images from the Internet</h3>
+    <div class="img-grid">
+      <figure>
+        <img src="https://picsum.photos/id/10/400/300" alt="Forest landscape" width="400" height="300" loading="lazy">
+        <figcaption>🌲 Forest · picsum.photos/id/10</figcaption>
+      </figure>
+      <figure>
+        <img src="https://picsum.photos/id/30/400/300" alt="Coffee cup" width="400" height="300" loading="lazy">
+        <figcaption>☕ Coffee · picsum.photos/id/30</figcaption>
+      </figure>
+      <figure>
+        <img src="https://picsum.photos/id/50/400/300" alt="Computer setup" width="400" height="300" loading="lazy">
+        <figcaption>💻 Workspace · picsum.photos/id/50</figcaption>
+      </figure>
+      <figure>
+        <img src="https://picsum.photos/id/60/400/300" alt="Desk items" width="400" height="300" loading="lazy">
+        <figcaption>✏️ Desk · picsum.photos/id/60</figcaption>
+      </figure>
+    </div>
+
+    <h3>Image from Root Folder</h3>
+    <p><em>Place an image file (e.g. <code>my-photo.jpg</code>) in the same folder as this HTML file.</em></p>
+    <figure>
+      <!-- Try loading from root; if not found, show fallback -->
+      <img src="./my-photo.jpg" alt="Photo from root folder"
+           width="400" height="300"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div style="display:none; padding:40px; border:2px dashed #30363d; border-radius:8px; text-align:center; color:#8b949e;">
+        📂 <code>my-photo.jpg</code> not found<br>
+        <small>Place an image named <code>my-photo.jpg</code> in the same folder to see it here!</small>
+      </div>
+      <figcaption>📁 <code>./my-photo.jpg</code> — loaded from root folder</figcaption>
+    </figure>
+
+    <h3>Responsive Image (<code>picture</code>)</h3>
+    <picture>
+      <source srcset="https://picsum.photos/id/100/800/400" media="(min-width: 600px)">
+      <source srcset="https://picsum.photos/id/100/400/200" media="(max-width: 599px)">
+      <img src="https://picsum.photos/id/100/400/200" alt="Responsive picture element demo" width="800" height="400">
+    </picture>
+    <figcaption>🔄 <code>picture</code> — different image for different screen sizes</figcaption>
+
+    <h3>Image with Map</h3>
+    <figure>
+      <img src="https://picsum.photos/id/20/400/300" alt="Clickable map demo" usemap="#demo-map" width="400" height="300">
+      <map name="demo-map">
+        <area shape="rect" coords="0,0,200,150" alt="Top-left" href="https://en.wikipedia.org/wiki/HTML" target="_blank">
+        <area shape="rect" coords="200,0,400,150" alt="Top-right" href="https://en.wikipedia.org/wiki/CSS" target="_blank">
+        <area shape="circle" coords="200,225,75" alt="Center" href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">
+      </map>
+      <figcaption>🗺️ <code>map</code> + <code><area></code> — click different parts of the image!</figcaption>
+    </figure>
+
+    <h3>SVG (Inline)</h3>
+    <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="45" fill="#238636" stroke="#3fb950" stroke-width="3"/>
+      <text x="50" y="60" text-anchor="middle" fill="white" font-size="30" font-weight="bold">A</text>
+    </svg>
+    <figcaption>🎨 Inline <code>svg</code> — Aina's initial!</figcaption>
+
+    <h3>Canvas (placeholder)</h3>
+    <canvas id="demo-canvas" width="400" height="100" style="border:1px solid #30363d; border-radius:6px;"></canvas>
+    <figcaption>🎨 <code>canvas</code> — needs JavaScript to draw (this one is empty!)</figcaption>
+
+    <h3>Audio</h3>
+    <audio controls>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      Your browser does not support the <code>audio</code> element.
+    </audio>
+    <figcaption>🔊 <code>audio</code> with controls (sample from SoundHelix)</figcaption>
+
+    <h3>Video</h3>
+    <video controls width="600" poster="https://picsum.photos/id/30/600/300" preload="none">
+      <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+      <track kind="captions" label="English" srclang="en" src="#" default>
+      Your browser does not support the video element.
+    </video>
+    <figcaption>🎬  — Big Buck Bunny (public domain)</figcaption>
+
+    <h3>Embedded Content</h3>
+    <iframe src="https://example.com" width="300" height="200" title="Example iframe" style="border:1px solid #30363d; border-radius:6px;"></iframe>
+    <figcaption>🪟 <code>iframe</code> — embedded external page</figcaption>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 4. TABLES                                                     -->
+  <!-- ============================================================ -->
+  <section id="table">
+    <h2>📊 Tables</h2>
+
+    <table>
+      <caption>HTML Element Reference — Quick Guide</caption>
+      <colgroup>
+        <col style="width: 25%;">
+        <col style="width: 50%;">
+        <col style="width: 25%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th>Description</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>a</code></td>
+          <td>Hyperlink to another page or resource</td>
+          <td>Inline</td>
+        </tr>
+        <tr>
+          <td><code>img</code></td>
+          <td>Embeds an image</td>
+          <td>Embedded</td>
+        </tr>
+        <tr>
+          <td><code>table</code></td>
+          <td>Displays tabular data</td>
+          <td>Table</td>
+        </tr>
+        <tr>
+          <td><code>form</code></td>
+          <td>Collects user input</td>
+          <td>Form</td>
+        </tr>
+        <tr>
+          <td><code>section</code></td>
+          <td>Groups thematic content</td>
+          <td>Semantic</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">This is a <code>tfoot</code> — spanning all 3 columns!</td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 5. FORMS                                                      -->
+  <!-- ============================================================ -->
+  <section id="forms">
+    <h2>📝 Forms — Every Input Type</h2>
+
+    <form onsubmit="event.preventDefault(); alert('Form submitted! (Demo — no data sent)')">
+      <fieldset>
+        <legend>🙋‍♂️ Text Inputs</legend>
+
+        <label for="text-demo">Text:</label>
+        <input type="text" id="text-demo" placeholder="Type something..." value="Hello!">
+
+        <label for="password-demo">Password:</label>
+        <input type="password" id="password-demo" value="secret123">
+
+        <label for="email-demo">Email:</label>
+        <input type="email" id="email-demo" placeholder="senpai@example.com">
+
+        <label for="url-demo">URL:</label>
+        <input type="url" id="url-demo" placeholder="https://...">
+
+        <label for="tel-demo">Telephone:</label>
+        <input type="tel" id="tel-demo" placeholder="+62...">
+
+        <label for="search-demo">Search:</label>
+        <input type="search" id="search-demo" placeholder="Search...">
+
+        <label for="number-demo">Number (min 1, max 100):</label>
+        <input type="number" id="number-demo" min="1" max="100" value="42">
+
+        <label for="textarea-demo">Textarea:</label>
+        <textarea id="textarea-demo" rows="3" placeholder="Write your thoughts..."></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>📅 Date & Time</legend>
+
+        <label for="date-demo">Date:</label>
+        <input type="date" id="date-demo" value="2026-05-14">
+
+        <label for="time-demo">Time:</label>
+        <input type="time" id="time-demo" value="20:52">
+
+        <label for="datetime-demo">Datetime-local:</label>
+        <input type="datetime-local" id="datetime-demo" value="2026-05-14T20:52">
+
+        <label for="month-demo">Month:</label>
+        <input type="month" id="month-demo" value="2026-05">
+
+        <label for="week-demo">Week:</label>
+        <input type="week" id="week-demo">
+      </fieldset>
+
+      <fieldset>
+        <legend>🎨 Selection & Choice</legend>
+
+        <label>Radio: Choose your favorite</label>
+        <label><input type="radio" name="fav" value="html" checked> HTML</label>
+        <label><input type="radio" name="fav" value="css"> CSS</label>
+        <label><input type="radio" name="fav" value="js"> JavaScript</label>
+
+        <label style="margin-top:10px;">Checkboxes:</label>
+        <label><input type="checkbox" name="skills" value="html" checked> HTML</label>
+        <label><input type="checkbox" name="skills" value="css" checked> CSS</label>
+        <label><input type="checkbox" name="skills" value="js"> JavaScript</label>
+        <label><input type="checkbox" name="skills" value="php" disabled> PHP (disabled)</label>
+
+        <label for="select-demo">Dropdown (<code>select</code>):</label>
+        <select id="select-demo">
+          <optgroup label="Frontend">
+            <option>HTML</option>
+            <option>CSS</option>
+            <option selected>JavaScript</option>
+          </optgroup>
+          <optgroup label="Backend">
+            <option>Python</option>
+            <option>Node.js</option>
+          </optgroup>
+        </select>
+
+        <label for="datalist-demo">Input with Datalist:</label>
+        <input type="text" id="datalist-demo" list="lang-list" placeholder="Start typing...">
+        <datalist id="lang-list">
+          <option value="HTML">
+          <option value="CSS">
+          <option value="JavaScript">
+          <option value="Python">
+          <option value="Rust">
+        </datalist>
+
+        <label for="multisel-demo">Multiple Select:</label>
+        <select id="multisel-demo" multiple size="4">
+          <option>HTML</option>
+          <option selected>CSS</option>
+          <option selected>JavaScript</option>
+          <option>Python</option>
+          <option>Rust</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>🎛️ Special Inputs</legend>
+
+        <label for="color-demo">Color Picker:</label>
+        <input type="color" id="color-demo" value="#58a6ff">
+
+        <label for="range-demo">Range (0–100):</label>
+        <input type="range" id="range-demo" min="0" max="100" value="75">
+        <output for="range-demo">75</output>
+
+        <label for="file-demo">File Upload:</label>
+        <input type="file" id="file-demo" accept=".jpg,.png,.html">
+
+        <label for="hidden-demo">Hidden input (you can't see me!):</label>
+        <input type="hidden" id="hidden-demo" value="secret-token">
+
+        <label>Meter & Progress:</label>
+        <label>Disk usage: <meter value="0.6" low="0.3" high="0.8" optimum="0.5">60%</meter></label>
+        <label>Upload: <progress value="45" max="100">45%</progress></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>🚀 Buttons</legend>
+        <button type="submit">✅ Submit</button>
+        <button type="reset">🔄 Reset</button>
+        <button type="button" onclick="alert('Plain button clicked!')">🔘 Plain Button</button>
+        <input type="submit" value="Input Submit">
+        <input type="reset" value="Input Reset">
+        <input type="button" value="Input Button" onclick="alert('Input button!')">
+        <input type="image" src="https://picsum.photos/id/0/120/40" alt="Image button" width="120" height="40" style="vertical-align:middle;">
+      </fieldset>
+    </form>
+
+    <h3>Form Output Element</h3>
+    <form oninput="result.value = parseInt(a.value) + parseInt(b.value)">
+      <input type="number" id="a" value="20"> +
+      <input type="number" id="b" value="22"> =
+      <output name="result" for="a b">42</output>
+    </form>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 6. SEMANTIC ELEMENTS                                          -->
+  <!-- ============================================================ -->
+  <section id="semantic">
+    <h2>🏗️ Semantic Sectioning</h2>
+
+    <article>
+      <h3>This is an <code>article</code></h3>
+      <p>An article is a self-contained composition — like a blog post, forum comment, or news story.</p>
+      <aside>
+        <p><strong>💡 Aside:</strong> This is an <code>aside</code> — tangentially related content. Like a sidebar note!</p>
+      </aside>
+    </article>
+
+    <address>
+      📍 <code>address</code> — Contact info:<br>
+      Senpai · IT Department · School in West Jakarta<br>
+      GitHub: <a href="https://github.com/iteranya" target="_blank">@iteranya</a>
+    </address>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 7. INTERACTIVE ELEMENTS                                       -->
+  <!-- ============================================================ -->
+  <section id="interactive">
+    <h2>🎮 Interactive Elements</h2>
+
+    <h3>Details / Summary (Accordion)</h3>
+    <details>
+      <summary>📂 Click to expand — What is HTML?</summary>
+      <p>HTML (HyperText Markup Language) is the standard language for creating web pages. It describes the structure of a web page semantically.</p>
+      <p>It was first created by <strong>Tim Berners-Lee</strong> in 1991.</p>
+    </details>
+    <details open>
+      <summary>📂 This one is already OPEN (<code>open</code> attribute)</summary>
+      <p>You can see this content by default because the <code>open</code> attribute is set!</p>
+    </details>
+
+    <h3>Dialog</h3>
+    <dialog id="demo-dialog" style="padding:20px; border-radius:8px; border:2px solid #58a6ff; background:#161b22; color:#c9d1d9;">
+      <h3>🪟 Hello from a <code>dialog</code>!</h3>
+      <p>This is a native modal dialog box.</p>
+      <button onclick="document.getElementById('demo-dialog').close()">Close</button>
+    </dialog>
+    <button onclick="document.getElementById('demo-dialog').showModal()">🪟 Open Dialog</button>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 8. MISCELLANEOUS                                              -->
+  <!-- ============================================================ -->
+  <section id="misc">
+    <h2>🧩 Miscellaneous Elements</h2>
+
+    <h3>Blockquote</h3>
+    <blockquote cite="https://www.w3.org/TR/html52/">
+      <p>"The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect."</p>
+      <footer>— <cite>Tim Berners-Lee</cite>, W3C Director</footer>
+    </blockquote>
+
+  <h3>Preformatted Text</h3>
+    <pre><code id="code-showcase"></code></pre>
+    <script>
+      document.getElementById('code-showcase').textContent =
+        '<!DOCTYPE html>\n' +
+        '<html lang="en">\n' +
+        '<head>\n' +
+        '  <meta charset="UTF-8">\n' +
+        '  <title>Hello World</title>\n' +
+        '</head>\n' +
+        '<body>\n' +
+        '  <h1>Hello, Senpai!</h1>\n' +
+        '  <p>— Aina 💙</p>\n' +
+        '</body>\n' +
+        '</html>';
+    </script>
+
+
+    <h3>Horizontal Rule</h3>
+    <hr>
+
+    <h3>Definition List (More)</h3>
+    <dl>
+      <dt>Vanilla</dt>
+      <dd>Plain, without any additives. In coding: no frameworks, no libraries.</dd>
+      <dt><code>template</code></dt>
+      <dd>Content that is not rendered on page load — used with JavaScript.</dd>
+    </dl>
+
+    <template id="demo-template">
+      <p style="color:#3fb950;">✨ This came from a <code>template</code> tag via JavaScript!</p>
+    </template>
+    <button onclick="const t = document.getElementById('demo-template'); const c = t.content.cloneNode(true); document.getElementById('template-output').appendChild(c);">
+      🧬 Activate Template
+    </button>
+    <div id="template-output"></div>
+
+    <h3>Noscript</h3>
+    <noscript>
+      <p style="color:#f85149;">⚠️ JavaScript is disabled! Some interactive features won't work.</p>
+    </noscript>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER                                                        -->
+  <!-- ============================================================ -->
+  <hr>
+  <footer>
+    <p>
+      🎀 Made with vanilla HTML by <strong>Senpai</strong> & <strong>Aina</strong> ·
+      <time datetime="2026-05-14T20:52">Thursday, May 14, 2026 · 8:52 PM</time>
+    </p>
+    <p>
+      <small>
+        External resources: <a href="https://picsum.photos" target="_blank">Lorem Picsum</a> (images) ·
+        <a href="https://www.soundhelix.com" target="_blank">SoundHelix</a> (audio) ·
+        Big Buck Bunny (public domain video)
+      </small>
+    </p>
+    <p>💙 <em>No frameworks were harmed in the making of this page.</em></p>
+  </footer>
+
+</body>
+</html>
